@@ -118,8 +118,8 @@ macro(load_sdklib_libraries)
         pkg_check_modules(sqlite3 REQUIRED IMPORTED_TARGET sqlite3)
         target_link_libraries(SDKlib PRIVATE PkgConfig::sqlite3)
 
-        pkg_check_modules(curl REQUIRED IMPORTED_TARGET libcurl)
-        target_link_libraries(SDKlib PRIVATE PkgConfig::curl)
+        find_package(CURL CONFIG REQUIRED)
+        target_link_libraries(SDKlib PRIVATE CURL::libcurl)
 
         find_package(ICU COMPONENTS i18n uc data REQUIRED)
         target_link_libraries(SDKlib PRIVATE ICU::i18n ICU::uc ICU::data)
